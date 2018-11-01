@@ -1,14 +1,20 @@
 // React
 import React, { Component } from "react";
 // Aphrodite
-import { StyleSheet, css } from "aphrodite";
+import { StyleSheet, css } from "aphrodite/no-important";
+// Components
+import SideBar from "./components/SideBar";
 
 export default class Drawer extends Component {
   render() {
-    return <div className={css(styles.mainDiv)}>Hello World</div>;
+    return (
+      <div className={css(styles.mainDiv)}>
+        <SideBar />
+      </div>
+    );
   }
 }
 
 const styles = StyleSheet.create({
-  mainDiv: { backgroundColor: "red" }
+  mainDiv: { height: "100%" }
 });
