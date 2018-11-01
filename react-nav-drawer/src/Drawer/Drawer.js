@@ -1,8 +1,14 @@
 // React
-import React from "react";
+import React, { Component } from "react";
+// Aphrodite
+import { StyleSheet, css } from "aphrodite";
 
-const Drawer = () => {
-  return <div>Hello World</div>;
-};
+export default class Drawer extends Component {
+  render() {
+    return <div className={css(styles.mainDiv)}>Hello World</div>;
+  }
+}
 
-export default Drawer;
+const styles = StyleSheet.create({
+  mainDiv: { backgroundColor: "red" }
+});
