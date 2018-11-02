@@ -11,7 +11,7 @@ export default class SideBar extends Component {
   createIconsArray = () => {
     const accountIcon = classNames("icon-ic_account", css(styles.Icon));
     const bookmarkIcon = classNames("icon-ic_bookmark", css(styles.Icon));
-    const burgerIcon = classNames("icon-ic_burger", css(styles.Icon));
+    const burgerIcon = classNames("icon-ic_burger", css(styles.burgerIcon));
     const dateIcon = classNames("icon-ic_date", css(styles.Icon));
     const puzzleIcon = classNames("icon-ic_puzzle", css(styles.Icon));
 
@@ -31,9 +31,18 @@ export default class SideBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  Icon: { fontSize: 24 },
+  burgerIcon: {
+    fontSize: 24,
+    color: "#778899",
+    ":hover": { cursor: "pointer" }
+  },
+  Icon: {
+    fontSize: 24,
+    color: "#778899",
+    ":hover": { color: "white", cursor: "pointer" }
+  },
   mainDiv: {
-    backgroundColor: "lightblue",
+    backgroundColor: "#87CEFA",
     display: "flex",
     flexDirection: "column",
     height: "100%",
