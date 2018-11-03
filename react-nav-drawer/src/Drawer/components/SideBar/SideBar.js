@@ -14,10 +14,24 @@ export default class SideBar extends Component {
   }
 
   createIconsArray = () => {
-    const accountIcon = classNames("icon-ic_account", css(styles.Icon));
-    const bookmarkIcon = classNames("icon-ic_bookmark", css(styles.Icon));
-    const dateIcon = classNames("icon-ic_date", css(styles.Icon));
-    const puzzleIcon = classNames("icon-ic_puzzle", css(styles.Icon));
+    const { openDrawer } = this.state;
+
+    const accountIcon = classNames(
+      "icon-ic_account",
+      css(styles.Icon, !openDrawer && styles.IconHover)
+    );
+    const bookmarkIcon = classNames(
+      "icon-ic_bookmark",
+      css(styles.Icon, !openDrawer && styles.IconHover)
+    );
+    const dateIcon = classNames(
+      "icon-ic_date",
+      css(styles.Icon, !openDrawer && styles.IconHover)
+    );
+    const puzzleIcon = classNames(
+      "icon-ic_puzzle",
+      css(styles.Icon, !openDrawer && styles.IconHover)
+    );
 
     const icons = [
       { icon: accountIcon, label: "Account" },
@@ -80,7 +94,9 @@ const styles = StyleSheet.create({
   },
   Icon: {
     fontSize: 24,
-    color: "#778899",
+    color: "#778899"
+  },
+  IconHover: {
     ":hover": { color: "white", cursor: "pointer" }
   },
   mainDiv: {

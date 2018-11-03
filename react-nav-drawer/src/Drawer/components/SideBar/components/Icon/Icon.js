@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 54,
     margin: 8,
-    width: "100%"
+    width: "100%",
+    ":hover": { backgroundColor: "rgb(176, 196, 222, 0.5)", cursor: "pointer" }
   },
   labelDiv: {
     color: "#778899",
