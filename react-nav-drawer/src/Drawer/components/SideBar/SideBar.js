@@ -38,7 +38,7 @@ export default class SideBar extends Component {
     const burgerIcon = classNames("icon-ic_burger", css(styles.burgerIcon));
     const iconsArray = this.createIconsArray();
     return (
-      <div className={css(styles.mainDiv, openDrawer && styles.opennedMainDiv)}>
+      <div className={css(styles.mainDiv, openDrawer && styles.openedMainDiv)}>
         <div className={css(styles.burgerIconDiv)}>
           <div className={burgerIcon} onClick={this.handleOpenDrawer} />
         </div>
@@ -47,9 +47,10 @@ export default class SideBar extends Component {
             <Icon
               icon={icon}
               iconNumber={index}
+              isDrawerOpen={openDrawer}
               key={index}
-              selectIcon={this.selectIcon}
               selectedIcon={selectedIcon}
+              selectIcon={this.selectIcon}
             />
           );
         })}
