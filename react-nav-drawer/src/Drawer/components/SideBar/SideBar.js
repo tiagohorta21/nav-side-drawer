@@ -1,9 +1,13 @@
 // React
 import React, { Component } from "react";
-// Aphrodite
-import { StyleSheet, css } from "aphrodite/no-important";
 // Helpers
 import classNames from "classnames";
+// Aphrodite
+import { StyleSheet, css } from "aphrodite/no-important";
+// Translations
+import translation from "./../../../config/translation";
+// Globals
+import Globals from "./../../../config/globals";
 // Components
 import Icon from "./components/Icon";
 
@@ -14,17 +18,21 @@ export default class SideBar extends Component {
   }
 
   createIconsArray = () => {
-    const accountIcon = classNames("icon-ic_account", css(styles.Icon));
-    const bookmarkIcon = classNames("icon-ic_bookmark", css(styles.Icon));
-    const dateIcon = classNames("icon-ic_date", css(styles.Icon));
-    const puzzleIcon = classNames("icon-ic_puzzle", css(styles.Icon));
+    const accountIcon = classNames(Globals.Icons.accountIcon, css(styles.icon));
+    const bookmarkIcon = classNames(
+      Globals.Icons.bookmarkIcon,
+      css(styles.icon)
+    );
+    const dateIcon = classNames(Globals.Icons.dateIcon, css(styles.icon));
+    const puzzleIcon = classNames(Globals.Icons.puzzleIcon, css(styles.icon));
 
     const icons = [
-      { icon: accountIcon, label: "Account" },
-      { icon: bookmarkIcon, label: "Bookmark" },
-      { icon: dateIcon, label: "Date" },
-      { icon: puzzleIcon, label: "Puzzle" }
+      { icon: accountIcon, label: translation.Drawer.firstIconLabel },
+      { icon: bookmarkIcon, label: translation.Drawer.secondIconLabel },
+      { icon: dateIcon, label: translation.Drawer.thirdIconLabel },
+      { icon: puzzleIcon, label: translation.Drawer.fourthIconLabel }
     ];
+
     return icons;
   };
   selectIcon = iconIndex => () => {
@@ -41,8 +49,8 @@ export default class SideBar extends Component {
   render() {
     const { openDrawer, selectedIcon } = this.state;
     const mainIcon = classNames(
-      openDrawer ? "icon-ic_close" : "icon-ic_burger",
-      css(styles.Icon)
+      openDrawer ? Globals.Icons.closeIcon : Globals.Icons.burgerIcon,
+      css(styles.icon)
     );
     const iconsArray = this.createIconsArray();
     return (
@@ -52,7 +60,9 @@ export default class SideBar extends Component {
             <div className={mainIcon} onClick={this.handleOpenDrawer} />
           </div>
           {openDrawer && (
-            <div className={css(styles.mainLabelDiv)}>{"Application"}</div>
+            <div className={css(styles.mainLabelDiv)}>
+              {translation.Drawer.mainLabel}
+            </div>
           )}
         </div>
         {iconsArray.map((iconArray, index) => {
@@ -75,14 +85,11 @@ export default class SideBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  burgerIconDiv: {
-    alignItems: "center",
-    display: "flex",
-    height: 64,
-    justifyContent: "center",
-    width: 64
+  icon: {
+    color: Globals.Colors.Gray,
+    fontSize: 24,
+    ":hover": { cursor: "pointer" }
   },
-  Icon: { color: "#778899", fontSize: 24, ":hover": { cursor: "pointer" } },
   iconContainer: { padding: 12 },
   innerDiv: {
     alignItems: "center",
@@ -92,13 +99,17 @@ const styles = StyleSheet.create({
     margin: 8
   },
   mainDiv: {
-    backgroundColor: "#87CEFA",
+    backgroundColor: Globals.Colors.Blue,
     display: "flex",
     flexDirection: "column",
     height: "100%",
     transition: "width 0.3s",
     width: 64
   },
-  mainLabelDiv: { color: "#778899", fontFamily: "Helvetica", fontWeight: 200 },
+  mainLabelDiv: {
+    color: Globals.Colors.Gray,
+    fontFamily: Globals.Fonts.Helvetica,
+    fontWeight: 200
+  },
   openedMainDiv: { width: 240 }
 });
