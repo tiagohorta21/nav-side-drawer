@@ -14,24 +14,10 @@ export default class SideBar extends Component {
   }
 
   createIconsArray = () => {
-    const { openDrawer } = this.state;
-
-    const accountIcon = classNames(
-      "icon-ic_account",
-      css(styles.Icon, !openDrawer && styles.IconHover)
-    );
-    const bookmarkIcon = classNames(
-      "icon-ic_bookmark",
-      css(styles.Icon, !openDrawer && styles.IconHover)
-    );
-    const dateIcon = classNames(
-      "icon-ic_date",
-      css(styles.Icon, !openDrawer && styles.IconHover)
-    );
-    const puzzleIcon = classNames(
-      "icon-ic_puzzle",
-      css(styles.Icon, !openDrawer && styles.IconHover)
-    );
+    const accountIcon = classNames("icon-ic_account", css(styles.Icon));
+    const bookmarkIcon = classNames("icon-ic_bookmark", css(styles.Icon));
+    const dateIcon = classNames("icon-ic_date", css(styles.Icon));
+    const puzzleIcon = classNames("icon-ic_puzzle", css(styles.Icon));
 
     const icons = [
       { icon: accountIcon, label: "Account" },
@@ -54,16 +40,25 @@ export default class SideBar extends Component {
 
   render() {
     const { openDrawer, selectedIcon } = this.state;
-    const burgerIcon = classNames("icon-ic_burger", css(styles.burgerIcon));
+    const mainIcon = classNames(
+      openDrawer ? "icon-ic_close" : "icon-ic_burger",
+      css(styles.Icon)
+    );
     const iconsArray = this.createIconsArray();
     return (
       <div className={css(styles.mainDiv, openDrawer && styles.openedMainDiv)}>
-        <div className={css(styles.burgerIconDiv)}>
-          <div className={burgerIcon} onClick={this.handleOpenDrawer} />
+        <div className={css(styles.innerDiv)}>
+          <div className={css(styles.iconContainer)}>
+            <div className={mainIcon} onClick={this.handleOpenDrawer} />
+          </div>
+          {openDrawer && (
+            <div className={css(styles.mainLabelDiv)}>{"Application"}</div>
+          )}
         </div>
         {iconsArray.map((iconArray, index) => {
           return (
             <Icon
+              closeDrawer={this.handleOpenDrawer}
               icon={iconArray.icon}
               iconNumber={index}
               isDrawerOpen={openDrawer}
@@ -80,11 +75,6 @@ export default class SideBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  burgerIcon: {
-    fontSize: 24,
-    color: "#778899",
-    ":hover": { cursor: "pointer" }
-  },
   burgerIconDiv: {
     alignItems: "center",
     display: "flex",
@@ -92,12 +82,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 64
   },
-  Icon: {
-    fontSize: 24,
-    color: "#778899"
-  },
-  IconHover: {
-    ":hover": { color: "white", cursor: "pointer" }
+  Icon: { color: "#778899", fontSize: 24, ":hover": { cursor: "pointer" } },
+  iconContainer: { padding: 12 },
+  innerDiv: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
+    height: 54,
+    margin: 8
   },
   mainDiv: {
     backgroundColor: "#87CEFA",
@@ -107,7 +99,6 @@ const styles = StyleSheet.create({
     transition: "width 0.3s",
     width: 64
   },
-  openedMainDiv: {
-    width: 240
-  }
+  mainLabelDiv: { color: "#778899", fontFamily: "Helvetica", fontWeight: 200 },
+  openedMainDiv: { width: 240 }
 });

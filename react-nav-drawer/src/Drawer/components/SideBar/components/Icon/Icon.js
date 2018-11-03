@@ -4,6 +4,7 @@ import React from "react";
 import { StyleSheet, css } from "aphrodite/no-important";
 
 export const Icon = ({
+  closeDrawer,
   icon,
   iconNumber,
   isDrawerOpen,
@@ -15,7 +16,7 @@ export const Icon = ({
     <React.Fragment>
       {isDrawerOpen ? (
         <div className={css(styles.iconOpenedDiv)}>
-          <div className={css(styles.iconOpenedInnerDiv)}>
+          <div className={css(styles.iconOpenedInnerDiv)} onClick={closeDrawer}>
             <div className={css(styles.iconContainer)}>
               <div className={icon} />
             </div>
