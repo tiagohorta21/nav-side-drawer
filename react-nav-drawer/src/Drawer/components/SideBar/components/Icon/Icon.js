@@ -2,6 +2,8 @@
 import React from "react";
 // Aphrodite
 import { StyleSheet, css } from "aphrodite/no-important";
+// Globals
+import Globals from "./../../../../../config/globals";
 
 export const Icon = ({
   closeDrawer,
@@ -68,11 +70,11 @@ const styles = StyleSheet.create({
     ":hover": { backgroundColor: "rgb(176, 196, 222, 0.5)", cursor: "pointer" }
   },
   labelDiv: {
-    color: "#778899",
-    fontFamily: "Helvetica",
+    color: Globals.Colors.Gray,
+    fontFamily: Globals.Fonts.Helvetica,
     fontWeight: 200
   },
   selectedIcon: {
-    borderLeft: "5px solid #778899"
+    borderLeft: `5px solid ${Globals.Colors.Gray}`
   }
 });
