@@ -7,6 +7,7 @@ export const Icon = ({
   icon,
   iconNumber,
   isDrawerOpen,
+  label,
   selectIcon,
   selectedIcon
 }) => {
@@ -18,6 +19,7 @@ export const Icon = ({
             <div className={css(styles.iconContainer)}>
               <div className={icon} />
             </div>
+            <div className={css(styles.labelDiv)}>{label}</div>
           </div>
         </div>
       ) : (
@@ -62,6 +64,11 @@ const styles = StyleSheet.create({
     height: 54,
     margin: 8,
     width: "100%"
+  },
+  labelDiv: {
+    color: "#778899",
+    fontFamily: "Helvetica",
+    fontWeight: 200
   },
   selectedIcon: {
     borderLeft: "5px solid #778899"
