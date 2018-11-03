@@ -8,22 +8,45 @@ import classNames from "classnames";
 import Icon from "./components/Icon";
 
 export default class SideBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { selectedIcon: "" };
+  }
+
   createIconsArray = () => {
     const accountIcon = classNames("icon-ic_account", css(styles.Icon));
     const bookmarkIcon = classNames("icon-ic_bookmark", css(styles.Icon));
-    const burgerIcon = classNames("icon-ic_burger", css(styles.burgerIcon));
     const dateIcon = classNames("icon-ic_date", css(styles.Icon));
     const puzzleIcon = classNames("icon-ic_puzzle", css(styles.Icon));
 
-    const icons = [burgerIcon, accountIcon, bookmarkIcon, dateIcon, puzzleIcon];
+    const icons = [accountIcon, bookmarkIcon, dateIcon, puzzleIcon];
     return icons;
   };
+  selectIcon = iconIndex => () => {
+    this.setState({
+      selectedIcon: iconIndex
+    });
+  };
+
   render() {
+    const { selectedIcon } = this.state;
+    const burgerIcon = classNames("icon-ic_burger", css(styles.burgerIcon));
     const iconsArray = this.createIconsArray();
     return (
       <div className={css(styles.mainDiv)}>
+        <div className={css(styles.burgerIconDiv)}>
+          <div className={burgerIcon} />
+        </div>
         {iconsArray.map((icon, index) => {
-          return <Icon icon={icon} key={index} />;
+          return (
+            <Icon
+              icon={icon}
+              iconNumber={index}
+              key={index}
+              selectIcon={this.selectIcon}
+              selectedIcon={selectedIcon}
+            />
+          );
         })}
       </div>
     );
@@ -35,6 +58,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: "#778899",
     ":hover": { cursor: "pointer" }
+  },
+  burgerIconDiv: {
+    alignItems: "center",
+    display: "flex",
+    height: 64,
+    justifyContent: "center",
+    width: "100%"
   },
   Icon: {
     fontSize: 24,
