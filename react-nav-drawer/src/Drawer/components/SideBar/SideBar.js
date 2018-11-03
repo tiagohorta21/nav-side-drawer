@@ -19,7 +19,12 @@ export default class SideBar extends Component {
     const dateIcon = classNames("icon-ic_date", css(styles.Icon));
     const puzzleIcon = classNames("icon-ic_puzzle", css(styles.Icon));
 
-    const icons = [accountIcon, bookmarkIcon, dateIcon, puzzleIcon];
+    const icons = [
+      { icon: accountIcon, label: "Account" },
+      { icon: bookmarkIcon, label: "Bookmark" },
+      { icon: dateIcon, label: "Date" },
+      { icon: puzzleIcon, label: "Puzzle" }
+    ];
     return icons;
   };
   selectIcon = iconIndex => () => {
@@ -42,13 +47,14 @@ export default class SideBar extends Component {
         <div className={css(styles.burgerIconDiv)}>
           <div className={burgerIcon} onClick={this.handleOpenDrawer} />
         </div>
-        {iconsArray.map((icon, index) => {
+        {iconsArray.map((iconArray, index) => {
           return (
             <Icon
-              icon={icon}
+              icon={iconArray.icon}
               iconNumber={index}
               isDrawerOpen={openDrawer}
               key={index}
+              label={iconArray.label}
               selectedIcon={selectedIcon}
               selectIcon={this.selectIcon}
             />
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    transition: "width 0.4s",
+    transition: "width 0.3s",
     width: 64
   },
   openedMainDiv: {
