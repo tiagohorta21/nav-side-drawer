@@ -10,7 +10,7 @@ import Icon from "./components/Icon";
 export default class SideBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedIcon: "" };
+    this.state = { openDrawer: false, selectedIcon: "" };
   }
 
   createIconsArray = () => {
@@ -27,15 +27,20 @@ export default class SideBar extends Component {
       selectedIcon: iconIndex
     });
   };
+  handleOpenDrawer = () => {
+    this.setState(prevState => ({
+      openDrawer: !prevState.openDrawer
+    }));
+  };
 
   render() {
-    const { selectedIcon } = this.state;
+    const { openDrawer, selectedIcon } = this.state;
     const burgerIcon = classNames("icon-ic_burger", css(styles.burgerIcon));
     const iconsArray = this.createIconsArray();
     return (
-      <div className={css(styles.mainDiv)}>
+      <div className={css(styles.mainDiv, openDrawer && styles.opennedMainDiv)}>
         <div className={css(styles.burgerIconDiv)}>
-          <div className={burgerIcon} />
+          <div className={burgerIcon} onClick={this.handleOpenDrawer} />
         </div>
         {iconsArray.map((icon, index) => {
           return (
@@ -64,7 +69,7 @@ const styles = StyleSheet.create({
     display: "flex",
     height: 64,
     justifyContent: "center",
-    width: "100%"
+    width: 64
   },
   Icon: {
     fontSize: 24,
@@ -76,6 +81,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     height: "100%",
+    transition: "width 0.4s",
     width: 64
+  },
+  openedMainDiv: {
+    width: 240
   }
 });
