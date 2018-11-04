@@ -1,5 +1,6 @@
 // React
 import React from "react";
+import PropTypes from "prop-types";
 // Aphrodite
 import { StyleSheet, css } from "aphrodite/no-important";
 // Globals
@@ -11,8 +12,8 @@ export const Icon = ({
   iconNumber,
   isDrawerOpen,
   label,
-  selectIcon,
-  selectedIcon
+  selectedIcon,
+  selectIcon
 }) => {
   return (
     <React.Fragment>
@@ -37,6 +38,22 @@ export const Icon = ({
       )}
     </React.Fragment>
   );
+};
+
+Icon.defaultProps = {
+  closeDrawer: () => {},
+  isDrawerOpen: false,
+  selectedIcon: "",
+  selectIcon: () => {}
+};
+Icon.propTypes = {
+  closeDrawer: PropTypes.func,
+  icon: PropTypes.string.isRequired,
+  iconNumber: PropTypes.number.isRequired,
+  isDrawerOpen: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  selectedIcon: PropTypes.string,
+  selectIcon: PropTypes.func
 };
 
 const styles = StyleSheet.create({
