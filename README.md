@@ -1,6 +1,6 @@
 # nav-side-drawer
 
-This project is dedicated to a global react-aphrodite navigation sidebar with a drawer and its basic functionalities, which are:
+This project is dedicated to a global navigation sidebar with a drawer and its basic functionalities, which are:
 
 * A main burger menu icon which opens the drawer
 * A drawer animation when opening
