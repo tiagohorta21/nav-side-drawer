@@ -43,7 +43,7 @@ export const Icon = ({
 Icon.defaultProps = {
   closeDrawer: () => {},
   isDrawerOpen: false,
-  selectedIcon: "",
+  selectedIcon: 0,
   selectIcon: () => {}
 };
 Icon.propTypes = {
