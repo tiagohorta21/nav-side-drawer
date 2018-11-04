@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     flexDirection: "row",
-    height: 54,
-    margin: 8
+    height: 64,
+    paddingLeft: 8
   },
   mainDiv: {
     backgroundColor: Globals.Colors.Blue,
