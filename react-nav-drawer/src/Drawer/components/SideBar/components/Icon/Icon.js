@@ -7,7 +7,6 @@ import { StyleSheet, css } from "aphrodite/no-important";
 import Globals from "./../../../../../config/globals";
 
 export const Icon = ({
-  closeDrawer,
   icon,
   iconNumber,
   isDrawerOpen,
@@ -19,7 +18,10 @@ export const Icon = ({
     <React.Fragment>
       {isDrawerOpen ? (
         <div className={css(styles.iconOpenedDiv)}>
-          <div className={css(styles.iconOpenedInnerDiv)} onClick={closeDrawer}>
+          <div
+            className={css(styles.iconOpenedInnerDiv)}
+            onClick={selectIcon(iconNumber)}
+          >
             <div className={css(styles.iconContainer)}>
               <div className={icon} />
             </div>
@@ -41,18 +43,16 @@ export const Icon = ({
 };
 
 Icon.defaultProps = {
-  closeDrawer: () => {},
   isDrawerOpen: false,
   selectedIcon: 0,
   selectIcon: () => {}
 };
 Icon.propTypes = {
-  closeDrawer: PropTypes.func,
   icon: PropTypes.string.isRequired,
   iconNumber: PropTypes.number.isRequired,
   isDrawerOpen: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  selectedIcon: PropTypes.string,
+  selectedIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   selectIcon: PropTypes.func
 };
 

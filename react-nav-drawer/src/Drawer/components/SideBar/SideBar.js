@@ -37,6 +37,7 @@ export default class SideBar extends Component {
   };
   selectIcon = iconIndex => () => {
     this.setState({
+      openDrawer: false,
       selectedIcon: iconIndex
     });
   };
@@ -68,7 +69,6 @@ export default class SideBar extends Component {
         {iconsArray.map((iconArray, index) => {
           return (
             <Icon
-              closeDrawer={this.handleOpenDrawer}
               icon={iconArray.icon}
               iconNumber={index}
               isDrawerOpen={openDrawer}
