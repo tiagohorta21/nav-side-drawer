@@ -1,4 +1,4 @@
-# nav-side-drawer
+# React navigation sidebar with a drawer
 
 This project is dedicated to a global navigation sidebar with a drawer and its basic functionalities, which are:
 
